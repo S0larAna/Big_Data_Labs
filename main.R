@@ -9,7 +9,7 @@ print(p/q)
 print(p^2)
 
 #task 2
-result1 = 1:20 * 0:1
+result1 <- 1:20 * 0:1
 print(result1)
 result2 = 2^c(1:20)
 print(result2)
@@ -68,6 +68,5 @@ print(length(vec[sapply(vec, function(x) any(x %% 2:9 == 0))]))
 
 vec <- c(1:16)
 print(vec[sapply(vec, function(x) any(x %% 2:3 == 0))])
-
 
 
