@@ -64,6 +64,10 @@ winners_rowing_data <- mydf %>%
 
 medal_count_rowing <- table(winners_rowing_data$Gender, winners_rowing_data$Year)
 
+attach(mtcars)
+opar <- par(no.readonly=TRUE)
+par(mfrow=c(2,2))
+
 barplot(medal_count_rowing, beside = TRUE, legend = rownames(medal_count_rowing), main = "Rowing Medals by Year",
         xlab = "Year", ylab = "Number of Medals", col = c("pink", "lightblue"))
 
@@ -83,3 +87,6 @@ medals_male <- table(rowing_data_male$Year)
 plot(medals_male, type = "b", col = "blue", xlab = "Year", ylab = "Number of Medals", main = "Trends in Medals by Gender", pch = 17)
 lines(medals_female, type = "b", col = "red", pch = 16)
 legend("topright", legend = c("Female", "Male"), pch = c(17, 16), col = c("blue", "red"))
+
+par(opar)
+detach(mtcars)
