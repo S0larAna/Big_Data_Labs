@@ -1,5 +1,7 @@
 library(rvest)
 library(dplyr)
+library(ggplot2)
+library(tidyr)
 
 parse_year <- function(year) {
   url <- paste0("https://www.numbeo.com/quality-of-life/rankings_by_country.jsp?title=", year)
@@ -30,3 +32,16 @@ data_netherlands <- all_data[all_data$Country=='Netherlands',]
 data_uae <- all_data[all_data$Country=='United Arab Emirates',]
 data_egypt <- all_data[all_data$Country=='Egypt',]
 data_switzerland <- all_data[all_data$Country=='Switzerland',]
+
+data_croatia$Climate_Index[data_croatia$Climate_Index == '-'] <- 0
+data_netherlands$Climate_Index[data_netherlands$Climate_Index == '-'] <- 0
+data_uae$Climate_Index[data_uae$Climate_Index == '-'] <- 0
+data_egypt$Climate_Index[data_egypt$Climate_Index == '-'] <- 0
+data_switzerland$Climate_Index[data_switzerland$Climate_Index == '-'] <- 0
+
+data_croatia$Climate_Index <- as.numeric(as.character(data_croatia$Climate_Index))
+data_netherlands$Climate_Index <- as.numeric(as.character(data_netherlands$Climate_Index))
+data_uae$Climate_Index <- as.numeric(as.character(data_uae$Climate_Index))
+data_egypt$Climate_Index <- as.numeric(as.character(data_egypt$Climate_Index))
+data_switzerland$Climate_Index <- as.numeric(as.character(data_switzerland$Climate_Index))
+
