@@ -1,4 +1,4 @@
-mydf <- read.csv(file="./data/summer.csv", stringsAsFactors = FALSE)
+mydf <- read.csv(file="Big_Data_Labs/data/summer.csv", stringsAsFactors = FALSE)
 
 countries <- c("ROU")
 
