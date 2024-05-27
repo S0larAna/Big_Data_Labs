@@ -124,15 +124,20 @@ ggplot(data_ukraine, aes(x = Educational_attainment_Bachelors_total, y = Scienti
        y = "Scientific_articles") +
   theme_minimal()
 
-fit <- lm(GDP_growth_annual ~ Population_growth_annual + Scientific_articles + High_tech_exports +Unemployment_advanced_ed, data = data_ukraine)
+fit <- lm(GDP_growth_annual ~ Population_growth_annual + Imports_goods_services_GDP + Life_expectancy_birth, data = data_ukraine[1:27,])
 summary(fit)
 
 library(car)
 
 scatterplotMatrix(cor_matrix[1:10, 1:10], spread=FALSE, lty.smooth=2, main="Distance diagramms")
 
-new_data <- data.frame(Population_growth_annual = c(0.48792863,  0.22958579,  0.20881213,  0.28765251,  0.05548576, -0.49600174),
-                       Scientific_articles = c(7.14, 6.89, 6.83, 8.09, 8.24, 8),
-                       High_tech_exports = c(3.724531, 3.397535, 3.653826, 3.287034, 5.550738, 5.50738),
-                       Unemployment_advanced_ed = c(7.14, 6.89, 6.83, 8.09, 8.24, 8.17))
-predict(fit, newdata = new_data)
+new_results <- predict(fit, newdata = data_ukraine[28:29,])
+
+par(mfrow=c(2,1))
+style <- c(rep(1,27), rep(7,4))
+plot(1989:2017,c(data_ukraine[1:27,2], new_results),
+     ylab="GDP",
+     xlab="Year", pch=style, col=style)
+plot(1989:2018,data_ukraine$GDP_growth_annual,
+     ylab="GDP",
+     xlab="Year", pch=style, col=style)
